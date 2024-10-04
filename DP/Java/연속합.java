@@ -23,17 +23,18 @@ public class 연속합 {
 
         int[] dp = new int[n];
         dp[0] = arr[0];
-        
-        for (int i = 0; i < n; i++) {
+
+        for (int i = 1; i < n; i++) {
             dp[i] = Math.max(arr[i], dp[i-1] + arr[i]);
         }
 
-        int max = Integer.MIN_VALUE;
+        int max = dp[0];
 
-        for (int i = 0; i < n; i++) {
-            max = Math.max(max, dp[i]);
+        for (int i = 1; i < n; i++) {
+            if (dp[i] > max) {
+                max = dp[i];
+            }
         }
-
         bw.write(max + "\n");
         bw.flush();
         bw.close();
